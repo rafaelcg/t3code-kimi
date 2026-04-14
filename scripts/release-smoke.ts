@@ -26,6 +26,13 @@ function copyWorkspaceManifestFixture(targetRoot: string): void {
     mkdirSync(dirname(destinationPath), { recursive: true });
     cpSync(sourcePath, destinationPath);
   }
+  const patchesSource = resolve(repoRoot, "patches");
+  const patchesDestination = resolve(targetRoot, "patches");
+  try {
+    cpSync(patchesSource, patchesDestination, { recursive: true });
+  } catch {
+    // patches directory may not exist
+  }
 }
 
 function writeMacManifestFixtures(targetRoot: string): { arm64Path: string; x64Path: string } {

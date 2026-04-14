@@ -1,62 +1,52 @@
-# T3 Code
+# T3 Code (Fork with Kimi support)
 
-T3 Code is a minimal web GUI for coding agents (currently Codex and Claude, more coming soon).
+This is a personal fork of [T3 Code](https://github.com/pingdotgg/t3code) with experimental support for the **Kimi** provider, plus plan-mode fixes and UI improvements.
+
+## What's different in this fork
+
+- **Kimi provider**: Start sessions and send turns using the Kimi CLI (`kimi`).
+- **Plan mode support**: Kimi now correctly enters plan mode and renders proposed plans in the UI.
+- **Runtime mode UI filter**: "Auto-accept edits" is hidden for Kimi (Kimi only supports `full-access` vs `approval-required`).
+- **SDK patch**: Patches `@moonshot-ai/kimi-agent-sdk@0.1.8` to handle the `PlanDisplay` event emitted by the Kimi CLI in plan mode.
 
 ## Installation
 
 > [!WARNING]
-> T3 Code currently supports Codex and Claude.
-> Install and authenticate at least one provider before use:
+> This fork is experimental. Install and authenticate at least one provider before use:
 >
-> - Codex: install [Codex CLI](https://github.com/openai/codex) and run `codex login`
-> - Claude: install Claude Code and run `claude auth login`
+> - **Codex**: install [Codex CLI](https://github.com/openai/codex) and run `codex login`
+> - **Claude**: install Claude Code and run `claude auth login`
+> - **Kimi**: install the [Kimi CLI](https://www.moonshot.cn/) and ensure `kimi` is in your `PATH`
 
-### Run without installing
-
-```bash
-npx t3
-```
-
-### Desktop app
-
-Install the latest version of the desktop app from [GitHub Releases](https://github.com/pingdotgg/t3code/releases), or from your favorite package registry:
-
-#### Windows (`winget`)
+### Run from source
 
 ```bash
-winget install T3Tools.T3Code
+git clone https://github.com/rafaelcg/t3code.git
+cd t3code
+bun install
+bun run dev
 ```
 
-#### macOS (Homebrew)
+### Prebuilt releases
 
-```bash
-brew install --cask t3-code
-```
-
-#### Arch Linux (AUR)
-
-```bash
-yay -S t3code-bin
-```
+There are no prebuilt releases for this fork. If you want a packaged build, you'll need to build it locally (see [CONTRIBUTING.md](./CONTRIBUTING.md) for build steps).
 
 ## Some notes
 
-We are very very early in this project. Expect bugs.
+This is a very early WIP fork. Expect bugs.
 
-We are not accepting contributions yet.
+Upstream is not accepting contributions yet, but this fork exists for personal experimentation.
 
 Observability guide: [docs/observability.md](./docs/observability.md)
 
-## If you REALLY want to contribute still.... read this first
+## Local development
 
 Before local development, prepare the environment and install dependencies:
 
 ```bash
 # Optional: only needed if you use mise for dev tool management.
 mise install
-bun install .
+bun install
 ```
 
 Read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening an issue or PR.
-
-Need support? Join the [Discord](https://discord.gg/jn4EGJjrvv).
